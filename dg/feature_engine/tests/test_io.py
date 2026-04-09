@@ -9,11 +9,7 @@ from feature_engine.io import PolarsDataLoader
 
 def test_polars_loader_returns_lazyframe(tmp_path: Path):
     """PolarsDataLoader should read a parquet file and return a LazyFrame."""
-    import sys
-    # Adding src paths for imports
-    _dg = Path(__file__).resolve().parents[2]
-    if str(_dg / "src") not in sys.path:
-        sys.path.insert(0, str(_dg / "src"))
+
 
     # Create dummy parquet file
     test_file = tmp_path / "dummy.parquet"

@@ -9,10 +9,13 @@ Polars-optimised).
 from feature_engine.base import WindowFeatureStrategy
 from feature_engine.daily import DailyWindowFeatures
 from feature_engine.backfill import BackfillWindowFeatures, backfill_window_features
+from feature_engine.io import DataLoader, PolarsDataLoader
 
 __all__ = [
     "WindowFeatureStrategy",
     "DailyWindowFeatures",
     "BackfillWindowFeatures",
     "backfill_window_features",
+    "DataLoader",
+    "PolarsDataLoader",
 ]
