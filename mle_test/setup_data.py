@@ -12,7 +12,7 @@ data_dir = Path(os.getenv("DATA_DIR", "./data/"))
 assets_dir = data_dir / "assets"
 assets_dir.mkdir(parents=True, exist_ok=True)
 
-out_path = assets_dir / "deily_agg.parquet"
+out_path = assets_dir / "daily_agg.parquet"
 print("Generating synthetic data...")
 
 df = create_daily_agg_pf(
