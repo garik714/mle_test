@@ -6,16 +6,16 @@ sys.stdout.reconfigure(encoding='utf-8')
 from pathlib import Path
 from datetime import date
 
-from synth_data import create_daily_agg_pf
+from synth_data import create_daily_aggregation
 
 data_dir = Path(os.getenv("DATA_DIR", "./data/"))
 assets_dir = data_dir / "assets"
 assets_dir.mkdir(parents=True, exist_ok=True)
 
-out_path = assets_dir / "deily_agg.parquet"
+out_path = assets_dir / "daily_agg.parquet"
 print("Generating synthetic data...")
 
-df = create_daily_agg_pf(
+df = create_daily_aggregation(
     start=date(2026, 1, 1),
     end=date(2026, 4, 1),
     min_types_per_uid=2,
