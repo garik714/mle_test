@@ -75,6 +75,3 @@ class DailyWindowFeatures(WindowFeatureStrategy):
             .agg(exprs)
         )
 
-    def __call__(self, *args, **kwargs):
-        """Callable interface for Dagster resource compatibility."""
-        return self.compute(*args, **kwargs)

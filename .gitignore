@@ -31,3 +31,7 @@ data/
 # OS
 .DS_Store
 Thumbs.db
+
+# Push script
+scripts/push_script.py
+scripts/push_payload.json

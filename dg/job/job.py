@@ -35,7 +35,7 @@ def daily_agg(
     period_days = 7
     lf = pl.scan_parquet(source_path)
     res = (
-        window_f(
+        window_f.compute(
             in_df=lf,
             group_by=["uid", "val_type"],
             exprs=agg_in_w_nw_exprs(w=str(period_days)),
