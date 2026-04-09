@@ -3,9 +3,7 @@ from pathlib import Path
 from datetime import datetime
 
 
-# Polars is used here only for data I/O (scan_parquet).
-# The feature computation itself is framework-agnostic (narwhals).
-import polars as pl
+
 
 from dagster import (
     asset,
@@ -19,6 +17,7 @@ import dagster as dg
 
 from expressions.windows import agg_in_w_nw_exprs
 from feature_engine.daily import DailyWindowFeatures
+from feature_engine.io import DataLoader, PolarsDataLoader
 
 
 @asset(
@@ -28,12 +27,13 @@ from feature_engine.daily import DailyWindowFeatures
 def daily_agg(
     context: AssetExecutionContext,
     window_f: ResourceParam[DailyWindowFeatures],
+    loader: ResourceParam[DataLoader],
 ):
     source_path = Path(os.getenv("DATA_DIR", "/home/mle/data/")) / "assets" / "daily_agg.parquet"
     context.log.info(context.partition_key)
     current_date = datetime.strptime(context.partition_key, "%Y-%m-%d").date()
     period_days = 7
-    lf = pl.scan_parquet(source_path)
+    lf = loader.load(source_path)
     res = (
         window_f.compute(
             in_df=lf,
@@ -70,5 +70,5 @@ defs = dg.Definitions(
     schedules=[
         daily_job_schedule,
     ],
-    resources={"window_f": DailyWindowFeatures()},
+    resources={"window_f": DailyWindowFeatures(), "loader": PolarsDataLoader()},
 )
