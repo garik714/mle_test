@@ -3,6 +3,7 @@ from pathlib import Path
 from datetime import datetime
 
 
+import polars as pl
 
 from dagster import (
     asset,
@@ -14,7 +15,7 @@ from dagster import (
 
 import dagster as dg
 
-from exprs.windows import agg_in_w_exprs
+from exprs.windows import agg_in_w_nw_exprs
 from feng.daily_w_f import DailyWindowFeatures
 
 
@@ -30,11 +31,12 @@ def deily_agg(
     context.log.info(context.partition_key)
     currnt_date = datetime.strptime(context.partition_key, "%Y-%m-%d").date()
     period_days = 7
+    lf = pl.scan_parquet(serc_path)
     res = (
         window_f(
-            in_df_path=serc_path,
+            in_df=lf,
             group_by=["uid", "val_type"],
-            exprs=agg_in_w_exprs(w=str(period_days)),
+            exprs=agg_in_w_nw_exprs(w=str(period_days)),
             current_date=currnt_date,
             period_days=period_days,
         )
