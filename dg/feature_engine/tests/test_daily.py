@@ -5,11 +5,8 @@ as a raw Polars daily-context computation, confirming the framework-
 agnostic layer works correctly end-to-end.
 """
 
-import sys
-from pathlib import Path
 from datetime import date, timedelta
 
-import numpy as np
 import polars as pl
 import pytest
 

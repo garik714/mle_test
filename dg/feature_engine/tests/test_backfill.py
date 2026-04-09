@@ -1,10 +1,7 @@
 """Tests that backfill results match daily-context results for each date."""
 
-import sys
-from pathlib import Path
 from datetime import date, timedelta
 
-import numpy as np
 import polars as pl
 import pytest
 
