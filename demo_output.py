@@ -13,13 +13,13 @@ _dg = Path("mle_test/dg")
 for pkg in ("expressions/src", "feature_engine/src", "synth-data/src"):
     sys.path.insert(0, str(_dg / pkg))
 
-from synth_data import create_daily_agg_pf
+from synth_data import create_daily_aggregation
 from expressions.windows import agg_in_w_exprs, agg_in_w_nw_exprs
 from feature_engine.backfill import backfill_window_features
 from feature_engine.daily import DailyWindowFeatures
 
 np.random.seed(42)
-df = create_daily_agg_pf(
+df = create_daily_aggregation(
     start=date(2026, 1, 1),
     end=date(2026, 1, 10),
     min_types_per_uid=8,

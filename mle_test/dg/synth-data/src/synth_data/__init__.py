@@ -1,1 +1,1 @@
-from synth_data.daily_agg import create_daily_agg_pf as create_daily_agg_pf
+from synth_data.daily_agg import create_daily_aggregation as create_daily_aggregation

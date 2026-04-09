@@ -13,7 +13,7 @@ _dg = Path(__file__).resolve().parents[2]
 for pkg in ("expressions/src", "feature_engine/src", "synth-data/src"):
     sys.path.insert(0, str(_dg / pkg))
 
-from synth_data import create_daily_agg_pf
+from synth_data import create_daily_aggregation
 from expressions.windows import agg_in_w_exprs
 from feature_engine.backfill import backfill_window_features
 
@@ -22,7 +22,7 @@ from feature_engine.backfill import backfill_window_features
 def daily_agg_df():
     """Small reproducible synthetic dataset."""
     np.random.seed(42)
-    return create_daily_agg_pf(
+    return create_daily_aggregation(
         start=date(2026, 1, 1),
         end=date(2026, 1, 31),
         min_types_per_uid=2,
