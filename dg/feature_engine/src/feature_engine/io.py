@@ -6,10 +6,11 @@ read files.
 """
 
 from abc import ABC, abstractmethod
-from typing import Any
+from typing import Any, TYPE_CHECKING
 from pathlib import Path
 
-import polars as pl
+if TYPE_CHECKING:
+    import polars as pl
 
 
 class DataLoader(ABC):
@@ -36,7 +37,7 @@ class DataLoader(ABC):
 class PolarsDataLoader(DataLoader):
     """Data loader that uses Polars to scan parquet files."""
 
-    def load(self, path: Path) -> pl.LazyFrame:
+    def load(self, path: Path) -> 'pl.LazyFrame':
         """Load data into a Polars LazyFrame using scan_parquet.
 
         Parameters
@@ -49,4 +50,5 @@ class PolarsDataLoader(DataLoader):
         pl.LazyFrame
             A lazy representation of the dataset.
         """
+        import polars as pl
         return pl.scan_parquet(path)
