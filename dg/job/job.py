@@ -3,6 +3,8 @@ from pathlib import Path
 from datetime import datetime
 
 
+# Polars is used here only for data I/O (scan_parquet).
+# The feature computation itself is framework-agnostic (narwhals).
 import polars as pl
 
 from dagster import (

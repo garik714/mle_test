@@ -26,7 +26,7 @@ class WindowFeatureStrategy(ABC):
         in_df: Any,
         group_by: list[str],
         exprs: list,
-        current_date: date,
+        current_date: date | None = None,
         period_days: int = 7,
     ) -> Any:
         """Compute windowed feature aggregations.
@@ -39,8 +39,9 @@ class WindowFeatureStrategy(ABC):
             Columns to group by inside each window.
         exprs : list
             Aggregation expressions.
-        current_date : date
-            Reference date for the computation window.
+        current_date : date | None
+            Reference date for the computation window.  ``None`` means
+            process all available dates (backfill mode).
         period_days : int
             Window size in days.
 

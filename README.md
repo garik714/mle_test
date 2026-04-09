@@ -12,7 +12,7 @@ docker create --name mle-test-dev -v C:\Users\$env:UserName\dsml\work\data_lake\
 ```
 
 ```bash
-# install libs exprs, feng, synth-data
+# install libs expressions, feature_engine, synth-data
 cd <lib_dir> 
 pip install -e .
 ```

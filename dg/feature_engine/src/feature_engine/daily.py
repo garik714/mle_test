@@ -75,21 +75,6 @@ class DailyWindowFeatures(WindowFeatureStrategy):
             .agg(exprs)
         )
 
-    @nw.narwhalify
-    def __call__(
-        self,
-        in_df: IntoFrameT,
-        group_by: list[str],
-        exprs: list[nw.Expr],
-        current_date: date,
-        period_days: int = 7,
-    ) -> IntoFrameT:
+    def __call__(self, *args, **kwargs):
         """Callable interface for Dagster resource compatibility."""
-        return (
-            in_df.filter(
-                (nw.col("date") > current_date - timedelta(days=period_days))
-                & (nw.col("date") <= current_date)
-            )
-            .group_by(group_by)
-            .agg(exprs)
-        )
+        return self.compute(*args, **kwargs)
