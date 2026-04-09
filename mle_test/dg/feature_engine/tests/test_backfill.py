@@ -10,12 +10,12 @@ import pytest
 
 # Make local packages importable without pip install -e
 _dg = Path(__file__).resolve().parents[2]
-for pkg in ("exprs/src", "feng/src", "synth-data/src"):
+for pkg in ("expressions/src", "feature_engine/src", "synth-data/src"):
     sys.path.insert(0, str(_dg / pkg))
 
 from synth_data import create_daily_agg_pf
-from exprs.windows import agg_in_w_exprs
-from feng.backfill_w_f import backfill_window_features
+from expressions.windows import agg_in_w_exprs
+from feature_engine.backfill import backfill_window_features
 
 
 @pytest.fixture()

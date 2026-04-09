@@ -1,5 +1,5 @@
 [project]
-name = "exprs"
+name = "expressions"
 version = "0.1.0"
 description = ""
 authors = [
@@ -11,7 +11,7 @@ dependencies = [
 ]
 
 [tool.poetry]
-packages = [{include = "exprs", from = "src"}]
+packages = [{include = "expressions", from = "src"}]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

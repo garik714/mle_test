@@ -15,8 +15,8 @@ from dagster import (
 
 import dagster as dg
 
-from exprs.windows import agg_in_w_nw_exprs
-from feng.daily_w_f import DailyWindowFeatures
+from expressions.windows import agg_in_w_nw_exprs
+from feature_engine.daily import DailyWindowFeatures
 
 
 @asset(

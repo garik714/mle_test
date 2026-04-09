@@ -10,13 +10,13 @@ import numpy as np
 import polars as pl
 
 _dg = Path("mle_test/dg")
-for pkg in ("exprs/src", "feng/src", "synth-data/src"):
+for pkg in ("expressions/src", "feature_engine/src", "synth-data/src"):
     sys.path.insert(0, str(_dg / pkg))
 
 from synth_data import create_daily_agg_pf
-from exprs.windows import agg_in_w_exprs, agg_in_w_nw_exprs
-from feng.backfill_w_f import backfill_window_features
-from feng.daily_w_f import DailyWindowFeatures
+from expressions.windows import agg_in_w_exprs, agg_in_w_nw_exprs
+from feature_engine.backfill import backfill_window_features
+from feature_engine.daily import DailyWindowFeatures
 
 np.random.seed(42)
 df = create_daily_agg_pf(
